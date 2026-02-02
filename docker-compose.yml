@@ -1,6 +1,6 @@
 version: '3.8'
 
-# DeLab Multi-Tier Deployment
+# latlab Multi-Tier Deployment
 # Usage: docker-compose up [tier-1|tier-2|tier-3]
 
 services:
@@ -9,21 +9,21 @@ services:
     build:
       context: .
       dockerfile: docker/Dockerfile
-    image: delab:tier-1-edge
-    container_name: delab-edge
+    image: latlab:tier-1-edge
+    container_name: latlab-edge
     ports:
       - "8889:8888"
     environment:
-      - JUPYTER_TOKEN=${JUPYTER_TOKEN:-delab2025}
+      - JUPYTER_TOKEN=${JUPYTER_TOKEN:-latlab2025}
     volumes:
-      - ${DATA_DIR:-./data}:/home/delab/data
-      - ${WORK_DIR:-./work}:/home/delab/work
+      - ${DATA_DIR:-./data}:/home/latlab/data
+      - ${WORK_DIR:-./work}:/home/latlab/work
     networks:
-      - delab-net
+      - latlab-net
     restart: unless-stopped
     profiles:
       - edge
       - tier1
 networks:
-  delab-net:
+  latlab-net:
     driver: bridge

@@ -1,11 +1,11 @@
-# JupyterLab Configuration for DeLab
+# JupyterLab Configuration for latlab
 c = get_config()
 
 # Server settings
 c.ServerApp.ip = '0.0.0.0'
 c.ServerApp.port = 8888
 c.ServerApp.open_browser = False
-c.ServerApp.root_dir = '/home/delab/work'
+c.ServerApp.root_dir = '/home/latlab'
 
 # Security settings (token set via environment variable)
 c.ServerApp.token = ''

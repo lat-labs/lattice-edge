@@ -1,21 +1,21 @@
-# DeLab Tier 1: Edge Container
+# latlab Tier 1: Edge Container
 # Minimal Jupyter + Ray client for edge devices and lightweight deployments
 FROM python:3.11-slim
 
 # Metadata
-LABEL maintainer="DeLab Team <team@delab.io>"
+LABEL maintainer="latlab Team <team@latlab.io>"
 LABEL tier="1-edge"
-LABEL description="Minimal DeLab container for edge computing"
+LABEL description="Minimal latlab container for edge computing"
 LABEL version="1.0.0"
 
 # Set environment variables
 ENV PYTHONUNBUFFERED=1 \
     JUPYTER_ENABLE_LAB=yes \
-    NB_USER=delab \
+    NB_USER=latlab \
     NB_UID=1000 \
     NB_GID=100 \
-    HOME=/home/delab \
-    PATH="/home/delab/.local/bin:${PATH}"
+    HOME=/home/latlab \
+    PATH="/home/latlab/.local/bin:${PATH}"
 
 # Create user
 RUN useradd -m -s /bin/bash -u ${NB_UID} -g ${NB_GID} ${NB_USER}
@@ -47,8 +47,8 @@ RUN pip install --no-cache-dir --user \
     matplotlib \
     requests
 
-# Copy minimal delab core
-COPY --chown=${NB_UID}:${NB_GID} delab ${HOME}/delab
+# Copy minimal latlab core
+COPY --chown=${NB_UID}:${NB_GID} latlab ${HOME}/latlab
 
 # Copy minimal configuration
 COPY --chown=${NB_UID}:${NB_GID} config/jupyter_lab_config.py ${HOME}/.jupyter/
