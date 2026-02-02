@@ -1,4 +1,4 @@
-# Lattice - Federated BioML Research Platform
+# Lattice - Federated Research Platform
 
 **Multi-user JupyterHub deployment for collaborative biological machine learning research with GPU support and distributed computing.**
 
