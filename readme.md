@@ -1,4 +1,4 @@
-# DeLab - Federated BioML Research Platform
+# Lattice - Federated BioML Research Platform
 
 **Multi-user JupyterHub deployment for collaborative biological machine learning research with GPU support and distributed computing.**
 
@@ -8,7 +8,7 @@
 
 ## Overview
 
-DeLab is a federated BioML research platform that enables collaborative biological discovery through distributed computing. It provides a three-tier architecture (L1 Edge → L2 Workstation → L3 Datacenter) with multi-user JupyterHub, GPU acceleration, and Ray cluster integration.
+DeLab is a research platform that enables collaborative biological discovery through distributed computing. It provides a three-tier architecture (L1 Edge → L2 Workstation → L3 Datacenter) with multi-user JupyterHub, GPU acceleration, and Ray cluster integration.
 
 ### Key Features
 
