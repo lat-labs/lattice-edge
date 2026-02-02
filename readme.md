@@ -23,32 +23,23 @@ DeLab is a research platform that enables collaborative biological discovery thr
 
 ### Prerequisites
 
-- Docker 24.0+ with nvidia-runtime
+- Docker 24.0+
 - Docker Compose 2.0+
-- NVIDIA GPUs (optional but recommended)
-- 32GB+ RAM recommended
-- Linux server (tested on Ubuntu 22.04)
 
-### Installation
+### Run
 
 ```bash
 # Clone the repository
 git clone https://github.com/lat-labs/lattice-edge
 cd lattice-edge
 
-# Set up configuration
-cd config
-cp .env.example .env
-# Edit .env with your settings
-
-# Build and start services
-docker compose up -d
+# Build and start the container
+docker compose --profile edge up -d
 
 # Check status
 docker compose ps
-docker compose logs -f jupyterhub
 ```
 
-### Accessing JupyterHub
+### Accessing JupyterLab
 
-- **Local:** http://localhost:8080
+- **URL:** http://localhost:8889
