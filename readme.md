@@ -34,7 +34,7 @@ DeLab is a research platform that enables collaborative biological discovery thr
 ```bash
 # Clone the repository
 git clone https://github.com/lat-labs/lattice-edge
-cd lattice
+cd lattice-edge
 
 # Set up configuration
 cd config
