@@ -25,6 +25,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
     curl \
     ca-certificates \
+    nodejs \
+    npm \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Switch to user
@@ -50,8 +52,46 @@ RUN pip install --no-cache-dir --user \
 # Copy minimal latlab core
 COPY --chown=${NB_UID}:${NB_GID} latlab ${HOME}/latlab
 
+# Copy theme installer and theme extension source
+COPY --chown=${NB_UID}:${NB_GID} theme.py ${HOME}/theme.py
+COPY --chown=${NB_UID}:${NB_GID} delab-theme ${HOME}/delab-theme
+
 # Copy minimal configuration
 COPY --chown=${NB_UID}:${NB_GID} config/jupyter_lab_config.py ${HOME}/.jupyter/
+
+# Build and install the prebuilt JupyterLab theme extension
+RUN cd ${HOME}/delab-theme \
+    && npm install \
+    && npm run build \
+    && jupyter labextension build . \
+    && python - <<'PY'
+from pathlib import Path
+from shutil import rmtree, copytree
+from jupyter_core.paths import jupyter_data_dir
+
+root = Path("/home/latlab/delab-theme")
+candidates = list(root.rglob("remoteEntry*.js"))
+if not candidates:
+    raise SystemExit("Could not find built labextension output")
+
+extension_dir = candidates[0].parent.parent
+dst = Path(jupyter_data_dir()) / "labextensions" / "@delab" / "theme-delab-dark"
+
+if dst.exists():
+    rmtree(dst)
+copytree(extension_dir, dst)
+PY
+
+# Set DeLab Dark as the default theme
+RUN python - <<'PY'
+from pathlib import Path
+
+settings_dir = Path("/home/latlab/.jupyter/lab/user-settings/@jupyterlab/apputils-extension")
+settings_dir.mkdir(parents=True, exist_ok=True)
+settings_file = settings_dir / "themes.jupyterlab-settings"
+
+settings_file.write_text('{\n  "theme": "DeLab Dark"\n}')
+PY
 
 # Expose Jupyter port
 EXPOSE 8888

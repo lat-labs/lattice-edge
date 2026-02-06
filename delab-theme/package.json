@@ -1,0 +1,26 @@
+{
+  "name": "@delab/theme-delab-dark",
+  "version": "1.0.0",
+  "description": "DeLab dark theme for JupyterLab",
+  "keywords": [
+    "jupyterlab-theme"
+  ],
+  "license": "MIT",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "style": "style/index.css",
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@jupyterlab/apputils": "^4.0.0"
+  },
+  "devDependencies": {
+    "@jupyterlab/builder": "^4.0.0",
+    "typescript": "^5.3.3"
+  },
+  "jupyterlab": {
+    "extension": "lib/index.js",
+    "themePath": "style/index.css"
+  }
+}

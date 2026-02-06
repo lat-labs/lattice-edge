@@ -18,3 +18,6 @@ c.ServerApp.disable_check_xsrf = True
 
 # Terminal settings
 c.ServerApp.terminals_enabled = True
+
+# Enable custom CSS overrides
+c.LabApp.custom_css = True
