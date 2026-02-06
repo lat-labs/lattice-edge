@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "@jupyterlab/apputils": "^4.6.3"
+    "@jupyterlab/apputils": "^4.6.3",
+    "apputils": "^0.0.3"
   }
 }
