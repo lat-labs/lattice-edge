@@ -12,7 +12,7 @@ services:
   # ============================================================================
   tier-1-edge:
     build:
-      context: .
+      context: ..
       dockerfile: docker/Dockerfile
     image: latlab:tier-1-edge
     container_name: latlab-edge

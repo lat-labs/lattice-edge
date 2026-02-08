@@ -33,6 +33,11 @@ latlab is a research platform that enables collaborative biological discovery th
 git clone https://github.com/lat-labs/lattice-edge
 cd lattice-edge
 
+
+# Add a docker network
+
+docker network create lattice-network
+
 # Build and start the container
 docker compose --profile edge up -d
 
@@ -43,3 +48,5 @@ docker compose ps
 ### Accessing JupyterLab
 
 - **URL:** http://localhost:8889
+
+
