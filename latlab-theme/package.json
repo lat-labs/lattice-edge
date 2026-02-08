@@ -1,7 +1,7 @@
 {
-  "name": "@delab/theme-delab-dark",
+  "name": "@latlab/theme-latlab-dark",
   "version": "1.0.0",
-  "description": "DeLab dark theme for JupyterLab",
+  "description": "latlab dark theme for JupyterLab",
   "keywords": [
     "jupyterlab-theme"
   ],

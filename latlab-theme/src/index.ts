@@ -1,14 +1,14 @@
 import { IThemeManager } from '@jupyterlab/apputils';
 
-const style = '@delab/theme-delab-dark/index.css';
+const style = '@latlab/theme-latlab-dark/index.css';
 
 const plugin = {
-  id: '@delab/theme-delab-dark:plugin',
+  id: '@latlab/theme-latlab-dark:plugin',
   autoStart: true,
   requires: [IThemeManager],
   activate: (_app: unknown, manager: IThemeManager) => {
     manager.register({
-      name: 'DeLab Dark',
+      name: 'latlab Dark',
       isLight: false,
       themeScrollbars: true,
       load: () => manager.loadCSS(style),

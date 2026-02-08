@@ -54,7 +54,7 @@ COPY --chown=${NB_UID}:${NB_GID} latlab ${HOME}/latlab
 
 # Copy theme installer and theme extension source
 COPY --chown=${NB_UID}:${NB_GID} theme.py ${HOME}/theme.py
-COPY --chown=${NB_UID}:${NB_GID} delab-theme ${HOME}/delab-theme
+COPY --chown=${NB_UID}:${NB_GID} latlab-theme ${HOME}/latlab-theme
 
 # Copy minimal configuration
 COPY --chown=${NB_UID}:${NB_GID} config/jupyter_lab_config.py ${HOME}/.jupyter/
@@ -64,7 +64,7 @@ COPY --chown=${NB_UID}:${NB_GID} config/page_config.json ${HOME}/page_config.jso
 COPY --chown=${NB_UID}:${NB_GID} config/favicon.ico ${HOME}/favicon.ico
 
 # Build and install the prebuilt JupyterLab theme extension
-RUN cd ${HOME}/delab-theme \
+RUN cd ${HOME}/latlab-theme \
     && npm install \
     && npm run build \
     && jupyter labextension build . \
@@ -73,20 +73,20 @@ from pathlib import Path
 from shutil import rmtree, copytree
 from jupyter_core.paths import jupyter_data_dir
 
-root = Path("/home/latlab/delab-theme")
+root = Path("/home/latlab/latlab-theme")
 candidates = list(root.rglob("remoteEntry*.js"))
 if not candidates:
     raise SystemExit("Could not find built labextension output")
 
 extension_dir = candidates[0].parent.parent
-dst = Path(jupyter_data_dir()) / "labextensions" / "@delab" / "theme-delab-dark"
+dst = Path(jupyter_data_dir()) / "labextensions" / "@latlab" / "theme-latlab-dark"
 
 if dst.exists():
     rmtree(dst)
 copytree(extension_dir, dst)
 PY
 
-# Set DeLab Dark as the default theme
+# Set latlab Dark as the default theme
 RUN python - <<'PY'
 from pathlib import Path
 
@@ -94,7 +94,7 @@ settings_dir = Path("/home/latlab/.jupyter/lab/user-settings/@jupyterlab/apputil
 settings_dir.mkdir(parents=True, exist_ok=True)
 settings_file = settings_dir / "themes.jupyterlab-settings"
 
-settings_file.write_text('{\n  "theme": "DeLab Dark"\n}')
+settings_file.write_text('{\n  "theme": "latlab Dark"\n}')
 PY
 
 # Set custom app name ("latlab") and favicon

@@ -1,5 +1,5 @@
 /*-----------------------------------------------------------------------------
-| DeLab Dark Theme for JupyterLab
+| latlab Dark Theme for JupyterLab
 |
 | Follows the same pattern as the official JupyterLab Dark theme:
 | define CSS variables only, with minimal cosmetic-only overrides.
@@ -8,21 +8,21 @@
 |----------------------------------------------------------------------------*/
 
 :root {
-  /* ── DeLab Brand Colors (internal references) ── */
-  --delab-primary: #9B59B6;
-  --delab-primary-dark: #8E44AD;
-  --delab-primary-light: #BB8FCE;
-  --delab-accent: #E74C3C;
-  --delab-success: #27AE60;
-  --delab-warning: #F39C12;
-  --delab-info: #3498DB;
-  --delab-bg-primary: #1C1E26;
-  --delab-bg-secondary: #2D3142;
-  --delab-bg-tertiary: #3A3F51;
-  --delab-text-primary: #E8E9EB;
-  --delab-text-secondary: #BDC3C7;
-  --delab-text-muted: #95A5A6;
-  --delab-border: #4A5568;
+  /* ── latlab Brand Colors (internal references) ── */
+  --latlab-primary: #9B59B6;
+  --latlab-primary-dark: #8E44AD;
+  --latlab-primary-light: #BB8FCE;
+  --latlab-accent: #E74C3C;
+  --latlab-success: #27AE60;
+  --latlab-warning: #F39C12;
+  --latlab-info: #3498DB;
+  --latlab-bg-primary: #1C1E26;
+  --latlab-bg-secondary: #2D3142;
+  --latlab-bg-tertiary: #3A3F51;
+  --latlab-text-primary: #E8E9EB;
+  --latlab-text-secondary: #BDC3C7;
+  --latlab-text-muted: #95A5A6;
+  --latlab-border: #4A5568;
 
   /* ── Elevation / Shadows ── */
   --jp-shadow-base-lightness: 32;
@@ -75,10 +75,10 @@
 
   /* ── Borders ── */
   --jp-border-width: 1px;
-  --jp-border-color0: var(--delab-border);
-  --jp-border-color1: var(--delab-border);
-  --jp-border-color2: var(--delab-bg-tertiary);
-  --jp-border-color3: var(--delab-bg-secondary);
+  --jp-border-color0: var(--latlab-border);
+  --jp-border-color1: var(--latlab-border);
+  --jp-border-color2: var(--latlab-bg-tertiary);
+  --jp-border-color3: var(--latlab-bg-secondary);
   --jp-inverse-border-color: #757575;
   --jp-border-radius: 2px;
 
@@ -120,8 +120,8 @@
   --jp-content-font-color1: rgba(255, 255, 255, 1);
   --jp-content-font-color2: rgba(255, 255, 255, 0.7);
   --jp-content-font-color3: rgba(255, 255, 255, 0.5);
-  --jp-content-link-color: var(--delab-info);
-  --jp-content-link-visited-color: var(--delab-primary-light);
+  --jp-content-link-color: var(--latlab-info);
+  --jp-content-link-visited-color: var(--latlab-primary-light);
   --jp-content-link-hover-color: #42a5f5;
   --jp-content-font-family: system-ui, -apple-system, blinkmacsystemfont,
     'Segoe UI', helvetica, arial, sans-serif, 'Apple Color Emoji',
@@ -138,11 +138,11 @@
   --jp-code-cursor-width1: 2px;
   --jp-code-cursor-width2: 4px;
 
-  /* ── Layout Colors — DeLab dark palette ── */
-  --jp-layout-color0: var(--delab-bg-primary);
-  --jp-layout-color1: var(--delab-bg-secondary);
-  --jp-layout-color2: var(--delab-bg-tertiary);
-  --jp-layout-color3: var(--delab-border);
+  /* ── Layout Colors — latlab dark palette ── */
+  --jp-layout-color0: var(--latlab-bg-primary);
+  --jp-layout-color1: var(--latlab-bg-secondary);
+  --jp-layout-color2: var(--latlab-bg-tertiary);
+  --jp-layout-color3: var(--latlab-border);
   --jp-layout-color4: #757575;
 
   /* ── Inverse Layout ── */
@@ -152,10 +152,10 @@
   --jp-inverse-layout-color3: #bdbdbd;
   --jp-inverse-layout-color4: #757575;
 
-  /* ── Brand / Accent — DeLab purple instead of default blue ── */
-  --jp-brand-color0: var(--delab-primary-dark);
-  --jp-brand-color1: var(--delab-primary);
-  --jp-brand-color2: var(--delab-primary-light);
+  /* ── Brand / Accent — latlab purple instead of default blue ── */
+  --jp-brand-color0: var(--latlab-primary-dark);
+  --jp-brand-color1: var(--latlab-primary);
+  --jp-brand-color2: var(--latlab-primary-light);
   --jp-brand-color3: #D7BDE2;
   --jp-brand-color4: #EBDEF0;
   --jp-accent-color0: #388e3c;
@@ -187,17 +187,17 @@
   --jp-cell-collapser-min-height: 20px;
   --jp-cell-collapser-not-active-hover-opacity: 0.6;
   --jp-cell-editor-background: var(--jp-layout-color1);
-  --jp-cell-editor-border-color: var(--delab-border);
-  --jp-cell-editor-box-shadow: inset 0 0 2px var(--delab-primary-light);
+  --jp-cell-editor-border-color: var(--latlab-border);
+  --jp-cell-editor-box-shadow: inset 0 0 2px var(--latlab-primary-light);
   --jp-cell-editor-active-background: var(--jp-layout-color0);
-  --jp-cell-editor-active-border-color: var(--delab-primary);
+  --jp-cell-editor-active-border-color: var(--latlab-primary);
   --jp-cell-prompt-width: 64px;
   --jp-cell-prompt-font-family: var(--jp-code-font-family-default);
   --jp-cell-prompt-letter-spacing: 0;
   --jp-cell-prompt-opacity: 1;
   --jp-cell-prompt-not-active-opacity: 1;
   --jp-cell-prompt-not-active-font-color: #e0e0e0;
-  --jp-cell-inprompt-font-color: var(--delab-primary-light);
+  --jp-cell-inprompt-font-color: var(--latlab-primary-light);
   --jp-cell-outprompt-font-color: #bf5b3d;
 
   /* ── Notebook ── */
@@ -211,7 +211,7 @@
 
   /* ── Rendermime ── */
   --jp-rendermime-error-background: rgba(244, 67, 54, 0.28);
-  --jp-rendermime-table-row-background: var(--delab-bg-secondary);
+  --jp-rendermime-table-row-background: var(--latlab-bg-secondary);
   --jp-rendermime-table-row-hover-background: rgba(155, 89, 182, 0.2);
 
   /* ── Dialog ── */
@@ -232,12 +232,12 @@
   --jp-statusbar-height: 24px;
 
   /* ── Input Fields ── */
-  --jp-input-box-shadow: inset 0 0 2px var(--delab-primary-light);
+  --jp-input-box-shadow: inset 0 0 2px var(--latlab-primary-light);
   --jp-input-active-background: var(--jp-layout-color0);
   --jp-input-hover-background: var(--jp-layout-color2);
-  --jp-input-background: var(--delab-bg-tertiary);
+  --jp-input-background: var(--latlab-bg-tertiary);
   --jp-input-border-color: var(--jp-inverse-border-color);
-  --jp-input-active-border-color: var(--delab-primary);
+  --jp-input-active-border-color: var(--latlab-primary);
   --jp-input-active-box-shadow-color: rgba(155, 89, 182, 0.3);
 
   /* ── Editor ── */
@@ -245,20 +245,20 @@
   --jp-editor-selected-focused-background: rgba(155, 89, 182, 0.24);
   --jp-editor-cursor-color: var(--jp-ui-font-color0);
 
-  /* ── Code Mirror — DeLab palette ── */
-  --jp-mirror-editor-keyword-color: var(--delab-primary-light);
+  /* ── Code Mirror — latlab palette ── */
+  --jp-mirror-editor-keyword-color: var(--latlab-primary-light);
   --jp-mirror-editor-atom-color: #64b5f6;
-  --jp-mirror-editor-number-color: var(--delab-warning);
-  --jp-mirror-editor-def-color: var(--delab-info);
+  --jp-mirror-editor-number-color: var(--latlab-warning);
+  --jp-mirror-editor-def-color: var(--latlab-info);
   --jp-mirror-editor-variable-color: #e0e0e0;
   --jp-mirror-editor-variable-2-color: #2196f3;
   --jp-mirror-editor-variable-3-color: #43a047;
   --jp-mirror-editor-punctuation-color: #42a5f5;
   --jp-mirror-editor-property-color: #42a5f5;
   --jp-mirror-editor-operator-color: #d48fff;
-  --jp-mirror-editor-comment-color: var(--delab-text-muted);
-  --jp-mirror-editor-string-color: var(--delab-success);
-  --jp-mirror-editor-string-2-color: var(--delab-primary-light);
+  --jp-mirror-editor-comment-color: var(--latlab-text-muted);
+  --jp-mirror-editor-string-color: var(--latlab-success);
+  --jp-mirror-editor-string-2-color: var(--latlab-primary-light);
   --jp-mirror-editor-meta-color: #a2f;
   --jp-mirror-editor-qualifier-color: #555;
   --jp-mirror-editor-builtin-color: #43a047;
@@ -287,12 +287,12 @@
   --jp-vega-background: #bdbdbd;
 
   /* ── Keyboard Shortcuts ── */
-  --jp-shortcuts-button-background: var(--delab-primary-light);
-  --jp-shortcuts-button-hover-background: var(--delab-primary);
+  --jp-shortcuts-button-background: var(--latlab-primary-light);
+  --jp-shortcuts-button-hover-background: var(--latlab-primary);
 
   /* ── Switch ── */
   --jp-switch-color: #bdbdbd;
-  --jp-switch-true-position-color: var(--delab-primary);
+  --jp-switch-true-position-color: var(--latlab-primary);
 }
 
 /* ── Completer ── */
@@ -338,12 +338,12 @@
 .jp-MarkdownOutput h1,
 .jp-MarkdownOutput h2,
 .jp-MarkdownOutput h3 {
-  color: var(--delab-primary-light);
+  color: var(--latlab-primary-light);
 }
 
 /* Launcher card hover glow */
 .jp-LauncherCard:hover {
-  border-color: var(--delab-primary);
+  border-color: var(--latlab-primary);
   box-shadow: 0 4px 12px rgba(155, 89, 182, 0.3);
 }
 
@@ -358,15 +358,15 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--delab-border);
+  background: var(--latlab-border);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--delab-primary);
+  background: var(--latlab-primary);
 }
 
-/* ── Custom Logo — Replace default Jupyter logo with DeLab logo ── */
+/* ── Custom Logo — Replace default Jupyter logo with latlab logo ── */
 #jp-MainLogo svg,
 #jp-MainLogo .jp-icon3 {
   display: none !important;
