@@ -21,3 +21,10 @@ c.ServerApp.terminals_enabled = True
 
 # Enable custom CSS overrides
 c.LabApp.custom_css = True
+
+# Hide internal/config files from the file browser
+c.ContentsManager.hide_globs = [
+    '__pycache__', '*.pyc', '.ipynb_checkpoints',
+    '.jupyter', '.local', '.npm', '.cache',
+    'latlab', 'theme.py',
+]

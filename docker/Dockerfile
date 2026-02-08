@@ -135,6 +135,9 @@ if favicon_src.exists():
             shutil.copy2(favicon_src, target)
 PY
 
+# Clean up theme source and build artifacts (no longer needed at runtime)
+RUN rm -rf ${HOME}/latlab-theme ${HOME}/theme.py ${HOME}/page_config.json ${HOME}/favicon.ico
+
 # Expose Jupyter port
 EXPOSE 8888
 
