@@ -365,3 +365,16 @@
 ::-webkit-scrollbar-thumb:hover {
   background: var(--delab-primary);
 }
+
+/* ── Custom Logo — Replace default Jupyter logo with DeLab logo ── */
+#jp-MainLogo svg,
+#jp-MainLogo .jp-icon3 {
+  display: none !important;
+}
+
+#jp-MainLogo {
+  background-image: url('./latlab.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
