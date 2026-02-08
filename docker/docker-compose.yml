@@ -1,8 +1,8 @@
 # latlab Multi-Tier Deployment
 # Edge Node - Connects to separate Ray cluster in core network
 # Usage: 
-#   docker-compose --profile edge up          # Start edge node only (no Ray dependency)
-#   docker-compose --profile tier1 up         # Start edge node (expects Ray cluster available)
+#   docker compose up -d        # Start edge node
+#   docker compose down         # Stop edge node
 
 services:
   # ============================================================================
@@ -32,9 +32,6 @@ services:
       - latlab-net
       - lattice-net
     restart: unless-stopped
-    profiles:
-      - edge
-      - tier1
     # No depends_on - Ray cluster is external
 
 # ============================================================================

@@ -1,0 +1,3 @@
+Image,Cars,Processing Time (ms),Worker,Model
+DSC_0497.JPG,11,4522.0,6a5f6af2,fasterrcnn_resnet50_fpn
+DSC_0466.JPG,30,4505.64,6cd288c5,fasterrcnn_resnet50_fpn
