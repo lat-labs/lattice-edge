@@ -1,0 +1,72 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "id": "ea9e77b5-327e-47f9-9507-11e091fd4aca",
+   "metadata": {},
+   "outputs": [
+    {
+     "ename": "ConnectionError",
+     "evalue": "ray client connection timeout",
+     "output_type": "error",
+     "traceback": [
+      "\u001b[31m---------------------------------------------------------------------------\u001b[39m",
+      "\u001b[31mConnectionError\u001b[39m                           Traceback (most recent call last)",
+      "\u001b[36mCell\u001b[39m\u001b[36m \u001b[39m\u001b[32mIn[3]\u001b[39m\u001b[32m, line 3\u001b[39m\n\u001b[32m      1\u001b[39m \u001b[38;5;28;01mimport\u001b[39;00m\u001b[38;5;250m \u001b[39m\u001b[34;01mray\u001b[39;00m\n\u001b[32m----> \u001b[39m\u001b[32m3\u001b[39m \u001b[43mray\u001b[49m\u001b[43m.\u001b[49m\u001b[43minit\u001b[49m\u001b[43m(\u001b[49m\n\u001b[32m      4\u001b[39m \u001b[43m    \u001b[49m\u001b[43maddress\u001b[49m\u001b[43m=\u001b[49m\u001b[33;43m'\u001b[39;49m\u001b[33;43mray://ray-head:10001\u001b[39;49m\u001b[33;43m'\u001b[39;49m\u001b[43m,\u001b[49m\n\u001b[32m      5\u001b[39m \u001b[43m    \u001b[49m\u001b[43mnamespace\u001b[49m\u001b[43m=\u001b[49m\u001b[33;43m'\u001b[39;49m\u001b[33;43mlattice-detection\u001b[39;49m\u001b[33;43m'\u001b[39;49m\n\u001b[32m      6\u001b[39m \u001b[43m)\u001b[49m\n\u001b[32m      8\u001b[39m \u001b[38;5;28mprint\u001b[39m(\u001b[33m\"\u001b[39m\u001b[33m✓ Connected!\u001b[39m\u001b[33m\"\u001b[39m)\n\u001b[32m      9\u001b[39m \u001b[38;5;28mprint\u001b[39m(\u001b[33mf\u001b[39m\u001b[33m\"\u001b[39m\u001b[33mCPUs: \u001b[39m\u001b[38;5;132;01m{\u001b[39;00mray.available_resources()[\u001b[33m'\u001b[39m\u001b[33mCPU\u001b[39m\u001b[33m'\u001b[39m]\u001b[38;5;132;01m}\u001b[39;00m\u001b[33m\"\u001b[39m)\n",
+      "\u001b[36mFile \u001b[39m\u001b[32m~/.local/lib/python3.11/site-packages/ray/_private/client_mode_hook.py:103\u001b[39m, in \u001b[36mclient_mode_hook.<locals>.wrapper\u001b[39m\u001b[34m(*args, **kwargs)\u001b[39m\n\u001b[32m    101\u001b[39m     \u001b[38;5;28;01mif\u001b[39;00m func.\u001b[34m__name__\u001b[39m != \u001b[33m\"\u001b[39m\u001b[33minit\u001b[39m\u001b[33m\"\u001b[39m \u001b[38;5;129;01mor\u001b[39;00m is_client_mode_enabled_by_default:\n\u001b[32m    102\u001b[39m         \u001b[38;5;28;01mreturn\u001b[39;00m \u001b[38;5;28mgetattr\u001b[39m(ray, func.\u001b[34m__name__\u001b[39m)(*args, **kwargs)\n\u001b[32m--> \u001b[39m\u001b[32m103\u001b[39m \u001b[38;5;28;01mreturn\u001b[39;00m \u001b[43mfunc\u001b[49m\u001b[43m(\u001b[49m\u001b[43m*\u001b[49m\u001b[43margs\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43m*\u001b[49m\u001b[43m*\u001b[49m\u001b[43mkwargs\u001b[49m\u001b[43m)\u001b[49m\n",
+      "\u001b[36mFile \u001b[39m\u001b[32m~/.local/lib/python3.11/site-packages/ray/_private/worker.py:1457\u001b[39m, in \u001b[36minit\u001b[39m\u001b[34m(address, num_cpus, num_gpus, resources, labels, object_store_memory, local_mode, ignore_reinit_error, include_dashboard, dashboard_host, dashboard_port, job_config, configure_logging, logging_level, logging_format, log_to_driver, namespace, runtime_env, storage, **kwargs)\u001b[39m\n\u001b[32m   1455\u001b[39m passed_kwargs.update(kwargs)\n\u001b[32m   1456\u001b[39m builder._init_args(**passed_kwargs)\n\u001b[32m-> \u001b[39m\u001b[32m1457\u001b[39m ctx = \u001b[43mbuilder\u001b[49m\u001b[43m.\u001b[49m\u001b[43mconnect\u001b[49m\u001b[43m(\u001b[49m\u001b[43m)\u001b[49m\n\u001b[32m   1458\u001b[39m \u001b[38;5;28;01mfrom\u001b[39;00m\u001b[38;5;250m \u001b[39m\u001b[34;01mray\u001b[39;00m\u001b[34;01m.\u001b[39;00m\u001b[34;01m_private\u001b[39;00m\u001b[34;01m.\u001b[39;00m\u001b[34;01musage\u001b[39;00m\u001b[38;5;250m \u001b[39m\u001b[38;5;28;01mimport\u001b[39;00m usage_lib\n\u001b[32m   1460\u001b[39m \u001b[38;5;28;01mif\u001b[39;00m passed_kwargs.get(\u001b[33m\"\u001b[39m\u001b[33mallow_multiple\u001b[39m\u001b[33m\"\u001b[39m) \u001b[38;5;129;01mis\u001b[39;00m \u001b[38;5;28;01mTrue\u001b[39;00m:\n",
+      "\u001b[36mFile \u001b[39m\u001b[32m~/.local/lib/python3.11/site-packages/ray/client_builder.py:175\u001b[39m, in \u001b[36mClientBuilder.connect\u001b[39m\u001b[34m(self)\u001b[39m\n\u001b[32m    172\u001b[39m \u001b[38;5;28;01mif\u001b[39;00m \u001b[38;5;28mself\u001b[39m._allow_multiple_connections:\n\u001b[32m    173\u001b[39m     old_ray_cxt = ray.util.client.ray.set_context(\u001b[38;5;28;01mNone\u001b[39;00m)\n\u001b[32m--> \u001b[39m\u001b[32m175\u001b[39m client_info_dict = \u001b[43mray\u001b[49m\u001b[43m.\u001b[49m\u001b[43mutil\u001b[49m\u001b[43m.\u001b[49m\u001b[43mclient_connect\u001b[49m\u001b[43m.\u001b[49m\u001b[43mconnect\u001b[49m\u001b[43m(\u001b[49m\n\u001b[32m    176\u001b[39m \u001b[43m    \u001b[49m\u001b[38;5;28;43mself\u001b[39;49m\u001b[43m.\u001b[49m\u001b[43maddress\u001b[49m\u001b[43m,\u001b[49m\n\u001b[32m    177\u001b[39m \u001b[43m    \u001b[49m\u001b[43mjob_config\u001b[49m\u001b[43m=\u001b[49m\u001b[38;5;28;43mself\u001b[39;49m\u001b[43m.\u001b[49m\u001b[43m_job_config\u001b[49m\u001b[43m,\u001b[49m\n\u001b[32m    178\u001b[39m \u001b[43m    \u001b[49m\u001b[43m_credentials\u001b[49m\u001b[43m=\u001b[49m\u001b[38;5;28;43mself\u001b[39;49m\u001b[43m.\u001b[49m\u001b[43m_credentials\u001b[49m\u001b[43m,\u001b[49m\n\u001b[32m    179\u001b[39m \u001b[43m    \u001b[49m\u001b[43mray_init_kwargs\u001b[49m\u001b[43m=\u001b[49m\u001b[38;5;28;43mself\u001b[39;49m\u001b[43m.\u001b[49m\u001b[43m_remote_init_kwargs\u001b[49m\u001b[43m,\u001b[49m\n\u001b[32m    180\u001b[39m \u001b[43m    \u001b[49m\u001b[43mmetadata\u001b[49m\u001b[43m=\u001b[49m\u001b[38;5;28;43mself\u001b[39;49m\u001b[43m.\u001b[49m\u001b[43m_metadata\u001b[49m\u001b[43m,\u001b[49m\n\u001b[32m    181\u001b[39m \u001b[43m\u001b[49m\u001b[43m)\u001b[49m\n\u001b[32m    183\u001b[39m dashboard_url = ray.util.client.ray._get_dashboard_url()\n\u001b[32m    185\u001b[39m cxt = ClientContext(\n\u001b[32m    186\u001b[39m     dashboard_url=dashboard_url,\n\u001b[32m    187\u001b[39m     python_version=client_info_dict[\u001b[33m\"\u001b[39m\u001b[33mpython_version\u001b[39m\u001b[33m\"\u001b[39m],\n\u001b[32m   (...)\u001b[39m\u001b[32m    191\u001b[39m     _context_to_restore=ray.util.client.ray.get_context(),\n\u001b[32m    192\u001b[39m )\n",
+      "\u001b[36mFile \u001b[39m\u001b[32m~/.local/lib/python3.11/site-packages/ray/util/client_connect.py:55\u001b[39m, in \u001b[36mconnect\u001b[39m\u001b[34m(conn_str, secure, metadata, connection_retries, job_config, namespace, ignore_version, _credentials, ray_init_kwargs)\u001b[39m\n\u001b[32m     50\u001b[39m _explicitly_enable_client_mode()\n\u001b[32m     52\u001b[39m \u001b[38;5;66;03m# TODO(barakmich): https://github.com/ray-project/ray/issues/13274\u001b[39;00m\n\u001b[32m     53\u001b[39m \u001b[38;5;66;03m# for supporting things like cert_path, ca_path, etc and creating\u001b[39;00m\n\u001b[32m     54\u001b[39m \u001b[38;5;66;03m# the correct metadata\u001b[39;00m\n\u001b[32m---> \u001b[39m\u001b[32m55\u001b[39m conn = \u001b[43mray\u001b[49m\u001b[43m.\u001b[49m\u001b[43mconnect\u001b[49m\u001b[43m(\u001b[49m\n\u001b[32m     56\u001b[39m \u001b[43m    \u001b[49m\u001b[43mconn_str\u001b[49m\u001b[43m,\u001b[49m\n\u001b[32m     57\u001b[39m \u001b[43m    \u001b[49m\u001b[43mjob_config\u001b[49m\u001b[43m=\u001b[49m\u001b[43mjob_config\u001b[49m\u001b[43m,\u001b[49m\n\u001b[32m     58\u001b[39m \u001b[43m    \u001b[49m\u001b[43msecure\u001b[49m\u001b[43m=\u001b[49m\u001b[43msecure\u001b[49m\u001b[43m,\u001b[49m\n\u001b[32m     59\u001b[39m \u001b[43m    \u001b[49m\u001b[43mmetadata\u001b[49m\u001b[43m=\u001b[49m\u001b[43mmetadata\u001b[49m\u001b[43m,\u001b[49m\n\u001b[32m     60\u001b[39m \u001b[43m    \u001b[49m\u001b[43mconnection_retries\u001b[49m\u001b[43m=\u001b[49m\u001b[43mconnection_retries\u001b[49m\u001b[43m,\u001b[49m\n\u001b[32m     61\u001b[39m \u001b[43m    \u001b[49m\u001b[43mnamespace\u001b[49m\u001b[43m=\u001b[49m\u001b[43mnamespace\u001b[49m\u001b[43m,\u001b[49m\n\u001b[32m     62\u001b[39m \u001b[43m    \u001b[49m\u001b[43mignore_version\u001b[49m\u001b[43m=\u001b[49m\u001b[43mignore_version\u001b[49m\u001b[43m,\u001b[49m\n\u001b[32m     63\u001b[39m \u001b[43m    \u001b[49m\u001b[43m_credentials\u001b[49m\u001b[43m=\u001b[49m\u001b[43m_credentials\u001b[49m\u001b[43m,\u001b[49m\n\u001b[32m     64\u001b[39m \u001b[43m    \u001b[49m\u001b[43mray_init_kwargs\u001b[49m\u001b[43m=\u001b[49m\u001b[43mray_init_kwargs\u001b[49m\u001b[43m,\u001b[49m\n\u001b[32m     65\u001b[39m \u001b[43m\u001b[49m\u001b[43m)\u001b[49m\n\u001b[32m     66\u001b[39m \u001b[38;5;28;01mreturn\u001b[39;00m conn\n",
+      "\u001b[36mFile \u001b[39m\u001b[32m~/.local/lib/python3.11/site-packages/ray/util/client/__init__.py:233\u001b[39m, in \u001b[36mRayAPIStub.connect\u001b[39m\u001b[34m(self, *args, **kw_args)\u001b[39m\n\u001b[32m    231\u001b[39m \u001b[38;5;28;01mdef\u001b[39;00m\u001b[38;5;250m \u001b[39m\u001b[34mconnect\u001b[39m(\u001b[38;5;28mself\u001b[39m, *args, **kw_args):\n\u001b[32m    232\u001b[39m     \u001b[38;5;28mself\u001b[39m.get_context()._inside_client_test = \u001b[38;5;28mself\u001b[39m._inside_client_test\n\u001b[32m--> \u001b[39m\u001b[32m233\u001b[39m     conn = \u001b[38;5;28;43mself\u001b[39;49m\u001b[43m.\u001b[49m\u001b[43mget_context\u001b[49m\u001b[43m(\u001b[49m\u001b[43m)\u001b[49m\u001b[43m.\u001b[49m\u001b[43mconnect\u001b[49m\u001b[43m(\u001b[49m\u001b[43m*\u001b[49m\u001b[43margs\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43m*\u001b[49m\u001b[43m*\u001b[49m\u001b[43mkw_args\u001b[49m\u001b[43m)\u001b[49m\n\u001b[32m    234\u001b[39m     \u001b[38;5;28;01mglobal\u001b[39;00m _lock, _all_contexts\n\u001b[32m    235\u001b[39m     \u001b[38;5;28;01mwith\u001b[39;00m _lock:\n",
+      "\u001b[36mFile \u001b[39m\u001b[32m~/.local/lib/python3.11/site-packages/ray/util/client/__init__.py:89\u001b[39m, in \u001b[36m_ClientContext.connect\u001b[39m\u001b[34m(self, conn_str, job_config, secure, metadata, connection_retries, namespace, ignore_version, _credentials, ray_init_kwargs)\u001b[39m\n\u001b[32m     86\u001b[39m setup_logger(logging_level, logging_format)\n\u001b[32m     88\u001b[39m \u001b[38;5;28;01mtry\u001b[39;00m:\n\u001b[32m---> \u001b[39m\u001b[32m89\u001b[39m     \u001b[38;5;28mself\u001b[39m.client_worker = \u001b[43mWorker\u001b[49m\u001b[43m(\u001b[49m\n\u001b[32m     90\u001b[39m \u001b[43m        \u001b[49m\u001b[43mconn_str\u001b[49m\u001b[43m,\u001b[49m\n\u001b[32m     91\u001b[39m \u001b[43m        \u001b[49m\u001b[43msecure\u001b[49m\u001b[43m=\u001b[49m\u001b[43msecure\u001b[49m\u001b[43m,\u001b[49m\n\u001b[32m     92\u001b[39m \u001b[43m        \u001b[49m\u001b[43m_credentials\u001b[49m\u001b[43m=\u001b[49m\u001b[43m_credentials\u001b[49m\u001b[43m,\u001b[49m\n\u001b[32m     93\u001b[39m \u001b[43m        \u001b[49m\u001b[43mmetadata\u001b[49m\u001b[43m=\u001b[49m\u001b[43mmetadata\u001b[49m\u001b[43m,\u001b[49m\n\u001b[32m     94\u001b[39m \u001b[43m        \u001b[49m\u001b[43mconnection_retries\u001b[49m\u001b[43m=\u001b[49m\u001b[43mconnection_retries\u001b[49m\u001b[43m,\u001b[49m\n\u001b[32m     95\u001b[39m \u001b[43m    \u001b[49m\u001b[43m)\u001b[49m\n\u001b[32m     96\u001b[39m     \u001b[38;5;28mself\u001b[39m.api.worker = \u001b[38;5;28mself\u001b[39m.client_worker\n\u001b[32m     97\u001b[39m     \u001b[38;5;28mself\u001b[39m.client_worker._server_init(job_config, ray_init_kwargs)\n",
+      "\u001b[36mFile \u001b[39m\u001b[32m~/.local/lib/python3.11/site-packages/ray/util/client/worker.py:139\u001b[39m, in \u001b[36mWorker.__init__\u001b[39m\u001b[34m(self, conn_str, secure, metadata, connection_retries, _credentials)\u001b[39m\n\u001b[32m    136\u001b[39m \u001b[38;5;66;03m# Set to True after initial connection succeeds\u001b[39;00m\n\u001b[32m    137\u001b[39m \u001b[38;5;28mself\u001b[39m._has_connected = \u001b[38;5;28;01mFalse\u001b[39;00m\n\u001b[32m--> \u001b[39m\u001b[32m139\u001b[39m \u001b[38;5;28;43mself\u001b[39;49m\u001b[43m.\u001b[49m\u001b[43m_connect_channel\u001b[49m\u001b[43m(\u001b[49m\u001b[43m)\u001b[49m\n\u001b[32m    140\u001b[39m \u001b[38;5;28mself\u001b[39m._has_connected = \u001b[38;5;28;01mTrue\u001b[39;00m\n\u001b[32m    142\u001b[39m \u001b[38;5;66;03m# Has Ray been initialized on the server?\u001b[39;00m\n",
+      "\u001b[36mFile \u001b[39m\u001b[32m~/.local/lib/python3.11/site-packages/ray/util/client/worker.py:260\u001b[39m, in \u001b[36mWorker._connect_channel\u001b[39m\u001b[34m(self, reconnecting)\u001b[39m\n\u001b[32m    252\u001b[39m \u001b[38;5;28;01mif\u001b[39;00m log_once(\u001b[33m\"\u001b[39m\u001b[33mray_client_security_groups\u001b[39m\u001b[33m\"\u001b[39m):\n\u001b[32m    253\u001b[39m     warnings.warn(\n\u001b[32m    254\u001b[39m         \u001b[33m\"\u001b[39m\u001b[33mRay Client connection timed out. Ensure that \u001b[39m\u001b[33m\"\u001b[39m\n\u001b[32m    255\u001b[39m         \u001b[33m\"\u001b[39m\u001b[33mthe Ray Client port on the head node is reachable \u001b[39m\u001b[33m\"\u001b[39m\n\u001b[32m   (...)\u001b[39m\u001b[32m    258\u001b[39m         \u001b[33m\"\u001b[39m\u001b[33mmore information.\u001b[39m\u001b[33m\"\u001b[39m\n\u001b[32m    259\u001b[39m     )\n\u001b[32m--> \u001b[39m\u001b[32m260\u001b[39m \u001b[38;5;28;01mraise\u001b[39;00m \u001b[38;5;167;01mConnectionError\u001b[39;00m(\u001b[33m\"\u001b[39m\u001b[33mray client connection timeout\u001b[39m\u001b[33m\"\u001b[39m)\n",
+      "\u001b[31mConnectionError\u001b[39m: ray client connection timeout"
+     ]
+    }
+   ],
+   "source": [
+    "import ray\n",
+    "\n",
+    "ray.init(\n",
+    "    address='ray://ray-head:10001',\n",
+    "    namespace='lattice-detection'\n",
+    ")\n",
+    "\n",
+    "print(\"✓ Connected!\")\n",
+    "print(f\"CPUs: {ray.available_resources()['CPU']}\")\n",
+    "print(f\"Nodes: {len(ray.nodes())}\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "ef4117e4-3be6-4a75-a30e-020630c7b7ab",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.11.14"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}

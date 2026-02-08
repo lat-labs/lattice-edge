@@ -30,6 +30,7 @@ services:
       - RAY_NAMESPACE=${RAY_NAMESPACE:-lattice-detection}
     networks:
       - latlab-net
+      - lattice-net
     restart: unless-stopped
     profiles:
       - edge
@@ -43,5 +44,6 @@ networks:
   latlab-net:
     driver: bridge
     name: latlab-network
-    # This network should be able to reach the lattice-edge network
-    # where the Ray cluster is running
+  lattice-net:
+    external: true
+    name: lattice-network
