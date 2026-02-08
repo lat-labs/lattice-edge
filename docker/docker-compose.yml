@@ -1,8 +1,15 @@
 # latlab Multi-Tier Deployment
-# Usage: docker-compose up [tier-1|tier-2|tier-3]
+# Edge Node - Connects to separate Ray cluster in core network
+# Usage: 
+#   docker-compose --profile edge up          # Start edge node only (no Ray dependency)
+#   docker-compose --profile tier1 up         # Start edge node (expects Ray cluster available)
 
 services:
-  # Tier 1: Edge Container (Minimal)
+  # ============================================================================
+  # Tier 1: Edge Container (Jupyter/latlab)
+  # This is the edge node that CONNECTS to the Ray cluster
+  # It does NOT run the Ray cluster itself
+  # ============================================================================
   tier-1-edge:
     build:
       context: .
@@ -11,17 +18,30 @@ services:
     container_name: latlab-edge
     ports:
       - "8889:8888"
-    environment:
-      - JUPYTER_TOKEN=${JUPYTER_TOKEN:-latlab2025}
     volumes:
-      - ${DATA_DIR:-./data}:/home/latlab/data
-      - ${WORK_DIR:-./work}:/home/latlab/work
+      - ./notebooks:/home/latlab/work/notebooks
+      - ./data:/home/latlab/work/data
+      - ./outputs:/home/latlab/work/outputs
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+      - JUPYTER_TOKEN=${JUPYTER_TOKEN:-latlab2025}
+      # Ray cluster address - points to external lattice-edge deployment
+      - RAY_ADDRESS=${RAY_ADDRESS:-ray://ray-head:10001}
+      - RAY_NAMESPACE=${RAY_NAMESPACE:-lattice-detection}
     networks:
       - latlab-net
     restart: unless-stopped
     profiles:
       - edge
       - tier1
+    # No depends_on - Ray cluster is external
+
+# ============================================================================
+# Networks
+# ============================================================================
 networks:
   latlab-net:
     driver: bridge
+    name: latlab-network
+    # This network should be able to reach the lattice-edge network
+    # where the Ray cluster is running
