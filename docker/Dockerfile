@@ -59,6 +59,10 @@ COPY --chown=${NB_UID}:${NB_GID} delab-theme ${HOME}/delab-theme
 # Copy minimal configuration
 COPY --chown=${NB_UID}:${NB_GID} config/jupyter_lab_config.py ${HOME}/.jupyter/
 
+# Copy favicon into JupyterLab's static directory and page_config for app name
+COPY --chown=${NB_UID}:${NB_GID} config/page_config.json ${HOME}/page_config.json
+COPY --chown=${NB_UID}:${NB_GID} config/favicon.ico ${HOME}/favicon.ico
+
 # Build and install the prebuilt JupyterLab theme extension
 RUN cd ${HOME}/delab-theme \
     && npm install \
@@ -91,6 +95,44 @@ settings_dir.mkdir(parents=True, exist_ok=True)
 settings_file = settings_dir / "themes.jupyterlab-settings"
 
 settings_file.write_text('{\n  "theme": "DeLab Dark"\n}')
+PY
+
+# Set custom app name ("latlab") and favicon
+RUN python - <<'PY'
+from pathlib import Path
+import shutil, json
+from jupyterlab.commands import get_app_dir
+
+lab_app_dir = Path(get_app_dir())
+
+# -- page_config.json: sets the tab title --
+page_config_dir = lab_app_dir / "settings"
+page_config_dir.mkdir(parents=True, exist_ok=True)
+page_config_file = page_config_dir / "page_config.json"
+
+existing = {}
+if page_config_file.exists():
+    existing = json.loads(page_config_file.read_text())
+custom = json.loads(Path("/home/latlab/page_config.json").read_text())
+existing.update(custom)
+page_config_file.write_text(json.dumps(existing, indent=2))
+
+# -- favicon: replace the default Jupyter favicon --
+static_dir = lab_app_dir / "static" / "favicons"
+static_dir.mkdir(parents=True, exist_ok=True)
+favicon_src = Path("/home/latlab/favicon.ico")
+if favicon_src.exists():
+    shutil.copy2(favicon_src, static_dir / "favicon.ico")
+
+    # Also replace in jupyter_server's static dirs (where the browser actually loads it)
+    import jupyter_server
+    server_static = Path(jupyter_server.__file__).parent / "static"
+    for target in [
+        server_static / "favicon.ico",
+        server_static / "favicons" / "favicon.ico",
+    ]:
+        if target.parent.exists():
+            shutil.copy2(favicon_src, target)
 PY
 
 # Expose Jupyter port
