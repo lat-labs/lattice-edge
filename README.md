@@ -26,6 +26,25 @@ latlab is a research platform that enables collaborative biological discovery th
 - Docker 24.0+
 - Docker Compose 2.0+
 
+## 1. Pull the Jupyter image
+`docker pull logan422/lattice-edge:main`
+
+## 2. Run the container
+`docker run -d \
+  --name lattice-edge \
+  --network lattice-network \
+  -p 8889:8889 \
+  logan422/lattice-edge:main`
+
+## 3. Access Jupyter
+Once the container starts, navigate to 
+ **URL**: http://localhost:8889
+
+## Stopping the container
+`docker stop lattice-edge`
+## Removing the container
+`docker rm lattice-edge`
+
 ### Run
 
 ```bash
