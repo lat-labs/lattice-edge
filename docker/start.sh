@@ -6,7 +6,7 @@ API_PORT="${API_PORT:-8000}"
 RAY_ADDRESS="${RAY_ADDRESS:-ray://ray-head:10001}"
 
 echo "╔══════════════════════════════════════════════════════════╗"
-echo "║  Lattice Edge — starting services                       ║"
+echo "║  Lattice Edge — starting services                        ║"
 echo "╚══════════════════════════════════════════════════════════╝"
 
 # ── Wait for the external Ray cluster to become reachable ────────────────────
@@ -14,7 +14,7 @@ echo "→ Waiting for Ray cluster at ${RAY_ADDRESS} ..."
 MAX_RETRIES=30
 for i in $(seq 1 $MAX_RETRIES); do
     if python -c "import ray; ray.init(address='${RAY_ADDRESS}', namespace='lattice-detection'); print('ok'); ray.shutdown()" 2>/dev/null; then
-        echo "  ✓ Ray cluster reachable"
+        echo "   Ray cluster reachable"
         break
     fi
     if [ "$i" -eq "$MAX_RETRIES" ]; then
