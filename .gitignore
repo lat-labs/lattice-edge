@@ -50,6 +50,7 @@ htmlcov/
 .ipynb_checkpoints
 *.ipynb_checkpoints
 */.ipynb_checkpoints/*
+docker/notebooks
 
 # ============================================================================
 # Node / NPM

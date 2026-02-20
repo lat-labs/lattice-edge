@@ -9,26 +9,14 @@ echo "╔═══════════════════════�
 echo "║  Lattice Edge — starting services                        ║"
 echo "╚══════════════════════════════════════════════════════════╝"
 
-# ── Wait for the external Ray cluster to become reachable ────────────────────
-echo "→ Waiting for Ray cluster at ${RAY_ADDRESS} ..."
-MAX_RETRIES=30
-for i in $(seq 1 $MAX_RETRIES); do
-    if python -c "import ray; ray.init(address='${RAY_ADDRESS}', namespace='lattice-detection'); print('ok'); ray.shutdown()" 2>/dev/null; then
-        echo "   Ray cluster reachable"
-        break
-    fi
-    if [ "$i" -eq "$MAX_RETRIES" ]; then
-        echo "  ✗ Could not reach Ray cluster after ${MAX_RETRIES} attempts"
-        exit 1
-    fi
-    echo "  … attempt $i / $MAX_RETRIES"
-    sleep 2
-done
+# ── Fix ownership of mounted volumes so the latlab user can write ────────────
+echo "→ Fixing permissions on /home/latlab/work ..."
+chown -R "${NB_UID:-1000}:${NB_GID:-100}" /home/latlab/work
 
-# ── Launch FastAPI ───────────────────────────────────────────────────────────
-echo "→ Starting Lattice Edge API on port ${API_PORT}"
-exec uvicorn api.main:app \
-    --host 0.0.0.0 \
-    --port "${API_PORT}" \
-    --log-level info \
-    --ws websockets
+# ── Drop privileges and launch JupyterLab as the NB_USER ────────────────────
+echo "→ Starting JupyterLab as ${NB_USER} ..."
+exec gosu "${NB_USER}" jupyter lab \
+    --ip=0.0.0.0 \
+    --port=8888 \
+    --no-browser \
+    --NotebookApp.token=''

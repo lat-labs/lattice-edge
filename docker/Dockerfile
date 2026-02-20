@@ -27,6 +27,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates \
     nodejs \
     npm \
+    gosu \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Switch to user
@@ -138,6 +139,11 @@ PY
 # Clean up theme source and build artifacts (no longer needed at runtime)
 RUN rm -rf ${HOME}/latlab-theme ${HOME}/theme.py ${HOME}/page_config.json ${HOME}/favicon.ico
 
+# Switch to root to copy and configure startup script
+USER root
+COPY docker/start.sh /usr/local/bin/start.sh
+RUN chmod +x /usr/local/bin/start.sh
+
 # Expose Jupyter port
 EXPOSE 8888
 
@@ -145,5 +151,6 @@ EXPOSE 8888
 HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
     CMD curl -f http://localhost:8888/api || exit 1
 
-# Start JupyterLab
-CMD ["jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--NotebookApp.token=''"]
+# Run as root so start.sh can fix volume permissions, then drop to NB_USER
+ENTRYPOINT ["start.sh"]
+CMD []
