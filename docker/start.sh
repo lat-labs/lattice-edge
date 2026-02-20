@@ -13,6 +13,14 @@ echo "╚═══════════════════════�
 echo "→ Fixing permissions on /home/latlab/work ..."
 chown -R "${NB_UID:-1000}:${NB_GID:-100}" /home/latlab/work
 
+# ── Detect GPU resources ─────────────────────────────────────────────────────
+if command -v nvidia-smi &>/dev/null && nvidia-smi &>/dev/null; then
+    echo "→ GPU detected:"
+    nvidia-smi --query-gpu=name,memory.total --format=csv,noheader | sed 's/^/    /'
+else
+    echo "→ No GPU detected — running in CPU-only mode"
+fi
+
 # ── Drop privileges and launch JupyterLab as the NB_USER ────────────────────
 echo "→ Starting JupyterLab as ${NB_USER} ..."
 exec gosu "${NB_USER}" jupyter lab \

@@ -33,6 +33,15 @@ services:
       - lattice-net
     restart: unless-stopped
     # No depends_on - Ray cluster is external
+    # GPU access — requires NVIDIA Container Toolkit on the host.
+    # Remove this block if running on a CPU-only machine.
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
 
 # ============================================================================
 # Networks

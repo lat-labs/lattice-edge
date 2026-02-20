@@ -3,7 +3,7 @@
 FROM python:3.11-slim
 
 # Metadata
-LABEL maintainer="latlab Team <team@latlab.io>"
+LABEL maintainer="latlab Team <admin@latticelab.ai>"
 LABEL tier="1-edge"
 LABEL description="Minimal latlab container for edge computing"
 LABEL version="1.0.0"
@@ -49,6 +49,12 @@ RUN pip install --no-cache-dir --user \
     numpy \
     matplotlib \
     requests
+
+# Install GPU-accelerated packages (torch w/ CUDA 12.4, cupy)
+RUN pip install --no-cache-dir --user \
+    torch torchvision --index-url https://download.pytorch.org/whl/cu124 \
+    && pip install --no-cache-dir --user \
+    cupy-cuda12x
 
 # Copy minimal latlab core
 COPY --chown=${NB_UID}:${NB_GID} latlab ${HOME}/latlab
