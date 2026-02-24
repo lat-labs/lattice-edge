@@ -1,5 +1,4 @@
 # LatLab - Git Ignore File
-# Prevents sensitive data and build artifacts from being committed
 # ============================================================================
 # Python
 # ============================================================================
@@ -215,3 +214,7 @@ backups/*.tar.gz
 !.git/ssh/.gitkeep
 cache/
 data/shared/qbi-resources/
+
+
+
+.env
