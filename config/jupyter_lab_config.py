@@ -22,6 +22,9 @@ c.ServerApp.terminals_enabled = True
 # Enable custom CSS overrides
 c.LabApp.custom_css = True
 
+# Allow access to hidden files (needed for code navigation into .local/lib site-packages)
+c.ContentsManager.allow_hidden = True
+
 # Hide internal/config files from the file browser
 c.ContentsManager.hide_globs = [
     '__pycache__', '*.pyc', '.ipynb_checkpoints',

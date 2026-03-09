@@ -19,13 +19,20 @@ from api.stream import router as stream_router
 logging.basicConfig(level=logging.INFO, format="%(asctime)s  %(name)s  %(levelname)s  %(message)s")
 logger = logging.getLogger("api")
 
-RAY_ADDRESS = os.getenv("RAY_ADDRESS", "ray://ray-head:10001")
-RAY_NAMESPACE = os.getenv("RAY_NAMESPACE", "lattice-detection")
+RAY_ADDRESS = os.getenv("RAY_ADDRESS", "ray://l40.latticelab.ai:9443")
+RAY_NAMESPACE = os.getenv("RAY_NAMESPACE", "lattice")
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # ── Startup ──────────────────────────────────────────────────────────
+    # Inject Ray token auth env vars so the Ray client picks them up
+    if os.getenv("RAY_AUTH_TOKEN"):
+        os.environ.setdefault("RAY_AUTH_MODE", "token")
+        logger.info("Ray token auth enabled")
+    else:
+        logger.warning("RAY_AUTH_TOKEN not set — connecting without auth")
+
     logger.info("Connecting to Ray cluster at %s (namespace=%s)", RAY_ADDRESS, RAY_NAMESPACE)
     ray.init(address=RAY_ADDRESS, namespace=RAY_NAMESPACE)
     logger.info("Ray connected — CPUs: %s  GPUs: %s  Nodes: %d",

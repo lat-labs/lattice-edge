@@ -25,9 +25,12 @@ services:
     environment:
       - JUPYTER_ENABLE_LAB=yes
       - JUPYTER_TOKEN=${JUPYTER_TOKEN:-latlab2025}
-      # Ray cluster address - points to external lattice-edge deployment
-      - RAY_ADDRESS=${RAY_ADDRESS:-ray://ray-head:10001}
-      - RAY_NAMESPACE=${RAY_NAMESPACE:-lattice-detection}
+      # Ray cluster address - points to core node through NGINX gateway
+      - RAY_ADDRESS=${LATTICE_RAY_ADDRESS:-ray://l40.latticelab.ai:9443}
+      - RAY_NAMESPACE=${LATTICE_RAY_NAMESPACE:-lattice}
+      # Ray token auth
+      - RAY_AUTH_MODE=token
+      - RAY_AUTH_TOKEN=${RAY_AUTH_TOKEN}
     networks:
       - latlab-net
       - lattice-net
