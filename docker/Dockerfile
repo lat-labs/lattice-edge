@@ -44,7 +44,7 @@ RUN pip install --no-cache-dir --user \
     jupyterlab>=4.0.0 \
     notebook \
     ipykernel \
-    ray[client]==2.10.0 \
+    ray[client]==2.32.0 \
     pandas \
     numpy \
     matplotlib \
